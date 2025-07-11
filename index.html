@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF‑8">
+  <meta name="viewport" content="width=device-width, initial‑scale=1.0">
+  <title>Image Processor</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='stylesimg.css') }}">
+</head>
+<body>
+  <div class="container">
+    <form id="upload-form" enctype="multipart/form-data">
+      <input type="file" id="file-input" name="file" required>
+    </form>
+    <div class="options">
+      {% for action, label in [
+        ('resize','Resize 300×300'),
+        ('enhance','Enhance Contrast'),
+        ('sharpen','Sharpen'),
+        ('rotate','Rotate 90°'),
+        ('flip','Flip Horizontally'),
+        ('grayscale','Convert to Grayscale'),
+        ('thumbnail','Make Thumbnail'),
+        ('blur','Apply Blur'),
+        ('watermark','Add Watermark'),
+        ('passport_size','Passport Size')
+      ] %}
+      <div class="option" data-action="{{action}}">{{label}}</div>
+      {% endfor %}
+    </div>
+    
+  </div>
+  <img id="preview" style="display: none; max-width: 100%;" />
+<a id="download-btn" href="#" style="display: none; margin-top: 10px;" class="btn btn-primary">Download Image</a>
+
+  
+
+<script>
+  
+  document.querySelectorAll('.option').forEach(box => {
+    box.onclick = () => {
+      const input = document.getElementById('file-input');
+      if (!input.files.length) {
+        return alert('Select an image first!');
+      }
+
+      const formData = new FormData();
+      formData.append('file', input.files[0]);
+      formData.append('action', box.dataset.action);
+
+      fetch('/process', { method: 'POST', body: formData })
+        .then(r => r.blob())
+        .then(blob => {
+          const url = URL.createObjectURL(blob);
+          const img = document.getElementById('preview');
+          img.src = url;
+          img.style.display = 'block';
+
+          // Show and configure the download button
+          const downloadBtn = document.getElementById('download-btn');
+          downloadBtn.href = url;
+          downloadBtn.download = 'processed-image.png'; // change name/format if needed
+          downloadBtn.style.display = 'inline-block';
+        })
+        .catch(err => alert('Processing failed: ' + err));
+    };
+  });
+</script>
+
+
+</body>
+</html>
