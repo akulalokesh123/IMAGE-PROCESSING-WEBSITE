@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('indeximg.html')
 
 @app.route('/process', methods=['POST'])
 def process_image():
