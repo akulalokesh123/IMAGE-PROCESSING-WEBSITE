@@ -1,0 +1,90 @@
+/* General Layout */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f5f7fa;
+  padding: 40px 20px;
+  text-align: center;
+  color: #333;
+}
+
+/* Headings */
+h1 {
+  margin-bottom: 30px;
+  font-size: 2rem;
+  color: #222;
+}
+
+/* File Input */
+#file-input {
+  padding: 10px 14px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-bottom: 25px;
+}
+
+/* Action Buttons */
+.option {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 12px 8px;
+  transition: background-color 0.25s ease, transform 0.1s ease;
+}
+
+.option:hover {
+  background-color: #0056b3;
+  transform: scale(1.02);
+}
+
+/* Image Preview */
+#preview {
+  display: none;
+  max-width: 100%;
+  height: auto;
+  margin-top: 30px;
+  border-radius: 12px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.12);
+  transition: opacity 0.4s ease;
+}
+
+/* Show image with fade */
+#preview.show {
+  display: block;
+  opacity: 1;
+}
+
+/* Download Button */
+#download-btn {
+  display: none;
+  text-decoration: none;
+  background-color: #28a745;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  margin-top: 25px;
+  display: inline-block;
+  transition: background-color 0.25s ease, transform 0.1s ease;
+}
+
+#download-btn:hover {
+  background-color: #218838;
+  transform: scale(1.03);
+}
+
+/* Responsive Behavior */
+@media (max-width: 600px) {
+  .option, #download-btn {
+    width: 90%;
+    margin: 10px 0;
+  }
+
+  #file-input {
+    width: 90%;
+  }
+}
