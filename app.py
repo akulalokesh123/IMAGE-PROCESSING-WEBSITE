@@ -8,6 +8,7 @@ app = Flask(__name__)
 def index():
     return render_template('indeximg.html')
 
+
 @app.route('/process', methods=['POST'])
 def process_image():
     file = request.files.get('file')

@@ -4,7 +4,9 @@
   <meta charset="UTF‑8">
   <meta name="viewport" content="width=device-width, initial‑scale=1.0">
   <title>Image Processor</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='stylesimg.css') }}">
+  <link rel="stylesheet" href="/static/stylesimg.css">
+
+  
 </head>
 <body>
   <div class="container">
@@ -24,8 +26,8 @@
         ('watermark','Add Watermark'),
         ('passport_size','Passport Size')
       ] %}
-      <div class="option-box" data-action="{{ action }}">{{ label }}</div>
       
+      <div class="option" data-action="{{action}}">{{label}}</div>
       {% endfor %}
     </div>
     
